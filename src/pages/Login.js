@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native';
 import logo from '../assets/logo.png'
 
-function Login() {
+function Login({ navigation }) {
+    const [email, setEmail] = useState('');
+
     return (
         <View style={styles.container}>
             <Image style={styles.logo} source={logo} />
-            <TextInput style={styles.input} placeholder="Digite seu e-mail do Proesc" />
-            <TouchableOpacity style={styles.button}>
+            
+            <TextInput 
+                style={styles.input} 
+                placeholder="Digite seu e-mail do Proesc" 
+                value={email}
+                onChangeText={setEmail}
+            />
+            
+            <TouchableOpacity 
+                onPress={() => {navigation.navigate('Main', { email })}}
+                style={styles.button}
+            >
                 <Text style={styles.buttonText} >Entrar</Text>
             </TouchableOpacity>
         </View>
